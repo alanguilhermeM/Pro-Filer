@@ -74,3 +74,12 @@ def show_preview(context):
     if context["all_files"] or context["all_dirs"]:
         print(f'First 5 files: {context["all_files"][:5]}')
         print(f'First 5 directories: {context["all_dirs"][:5]}')
+
+
+context = {
+    "all_files": ["src/__init__.py", "src/app.py", "src/utils/__init__.py"],
+    "all_dirs": ["src", "src/utils"]
+}
+
+
+print(type(show_preview(context)))

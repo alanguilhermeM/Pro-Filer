@@ -26,15 +26,3 @@ def find_file_by_name(context, search_term, case_sensitive=True):
             found_files.append(path)
 
     return found_files
-
-
-context = {
-    "all_files": [
-        "/home/trybe/Downloads/Trybe_logo.png",
-        "/home/trybe/Documents/aula/python/tests.py",
-    ]
-}
-
-
-find_file_by_name(context, '.py')
-find_file_by_name(context, 'trybe', case_sensitive=False)
