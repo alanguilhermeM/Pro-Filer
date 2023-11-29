@@ -19,8 +19,8 @@ def find_file_by_name(context, search_term, case_sensitive=True):
         file_name = path.split("/")[-1]
 
         if not case_sensitive:
-            file_name.lower()
-            search_term.lower()
+            file_name = file_name.lower()
+            search_term = search_term.lower()
 
         if search_term in file_name:
             found_files.append(path)
@@ -30,19 +30,11 @@ def find_file_by_name(context, search_term, case_sensitive=True):
 
 context = {
     "all_files": [
-        "/home/trybe/Downloads/trybe_logo.png",
-        "/home/trybe/Documents/aula/python/tests.txt",
+        "/home/trybe/Downloads/Trybe_logo.png",
+        "/home/trybe/Documents/aula/python/tests.py",
     ]
 }
 
-show_deepest_file(context)
-# Saída:
-# Deepest file: /home/trybe/Documents/aula/python/tests.txt
 
-# context = {
-#     "all_files": []
-# }
-
-# show_deepest_file(context)
-# Saída:
-# No files found
+find_file_by_name(context, '.py')
+find_file_by_name(context, 'trybe', case_sensitive=False)
