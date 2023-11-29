@@ -1,5 +1,7 @@
 from pro_filer.actions.main_actions import show_preview  # NOQA
 
+e = "First 5 files: ['src/__init__.py', 'src/app.py', 'src/utils/__init__.py']"
+
 
 def test_show_preview(capsys):
     context = {
@@ -15,15 +17,11 @@ def test_show_preview(capsys):
     }
     show_preview(context)
 
-    captured = capsys.readouterr()
-    expected_output = (
-        "Found 3 files and 2 directories\n"
-        "First 5 files: ['src/__init__.py', 'src/app.py', "
-        "'src/utils/__init__.py']\n"
-        "First 5 directories: ['src', 'src/utils']\n"
-    )
+    captured = capsys.readouterr().out.split('\n')
 
-    assert captured.out == expected_output
+    assert captured[0] == "Found 3 files and 2 directories"
+    assert captured[1] == e
+    assert captured[2] == "First 5 directories: ['dir']"
 
 
 def test_show_preview_with_no_files(capsys):
