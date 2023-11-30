@@ -47,12 +47,5 @@ def test_not_existing_show_details(capsys):
     show_details(context)
 
     captured = capsys.readouterr()
-    # expected_output = (
-    #     "File name: Trybe_logo.png\n"
-    #     "File size in bytes: 22438\n"
-    #     "File type: file\n"
-    #     "File extension: .png\n"
-    #     "Last modified date: 2023-06-13\n"
-    # )
 
     assert captured.out == "File '????' does not exist\n"
