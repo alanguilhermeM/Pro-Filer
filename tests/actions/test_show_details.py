@@ -1,8 +1,9 @@
 from pro_filer.actions.main_actions import show_details  # NOQA
-# a
+from datetime import datetime
 
 
 def test_show_details(capsys):
+    current_date = datetime.now().strftime("%Y-%m-%d")
     context = {
         "base_path": "pro_filer/__init__.py"
     }
@@ -15,26 +16,31 @@ def test_show_details(capsys):
         "File size in bytes: 0\n"
         "File type: file\n"
         "File extension: .py\n"
-        "Last modified date: 2023-11-28\n"
+        f"Last modified date: {current_date}\n"
     )
 
     assert captured.out == expected_output
 
 
-def test_show_details_with_no_extension(capsys):
+def test_show_details_with_no_extension(capsys, tmp_path):
+    current_date = datetime.now().strftime("%Y-%m-%d")
+
+    file = tmp_path / "tmp_file"
+    file.write_text("content")
+
     context = {
-        "base_path": "pro_filer"
+        "base_path": str(file)
     }
 
     show_details(context)
 
     captured = capsys.readouterr()
     expected_output = (
-        "File name: pro_filer\n"
-        "File size in bytes: 4096\n"
-        "File type: directory\n"
+        "File name: tmp_file\n"
+        "File size in bytes: 7\n"
+        "File type: file\n"
         "File extension: [no extension]\n"
-        "Last modified date: 2023-11-28\n"
+        f"Last modified date: {current_date}\n"
     )
 
     assert captured.out == expected_output
